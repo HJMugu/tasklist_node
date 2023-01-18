@@ -56,6 +56,9 @@ app.get('/delete-task/:taskId', (req, res) => {
     })
 })
 
+//delete all tasks
+
+
 // proceed form post method data
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
@@ -99,5 +102,25 @@ app.post('/add-task', (req, res) => {
         }
     })
 })
+
+
+//delete all tasks function
+app.get("/delete-all", (req, res) => {
+    console.log('test')
+
+
+    jsonString = "[]"
+
+    fs.writeFile("./tasks.json", jsonString, "utf-8", (err) => {
+        if (err) {
+            console.log('Error writing file: error')
+        } else {
+            console.log('data saved to the file')
+        }
+    })
+    res.redirect("/")
+})
+
+
 
 app.listen(3002)
